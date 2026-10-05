@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Wine Quality Result</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <!-- Animated Background -->
+    <div class="background-glow glow-one"></div>
+    <div class="background-glow glow-two"></div>
+
+
+    <main class="container result-container">
+
+        <!-- Header -->
+        <header class="hero result-hero">
+
+            <div class="wine-icon">
+                🍷
+            </div>
+
+            <div>
+
+                <p class="small-title">
+                    AI ANALYSIS COMPLETE
+                </p>
+
+                <h1>
+                    Wine Quality
+                    <span>Result</span>
+                </h1>
+
+                <p class="subtitle">
+                    Your wine has been analyzed using our
+                    Random Forest Machine Learning model.
+                </p>
+
+            </div>
+
+        </header>
+
+
+        <!-- Result Card -->
+        <section class="glass-card result-card">
+
+            <div class="result-icon">
+                ✨
+            </div>
+
+
+            <p class="result-label">
+                PREDICTED WINE QUALITY
+            </p>
+
+
+            <div class="quality-number">
+                {{ prediction }}
+            </div>
+
+
+            <div class="quality-scale">
+
+                <span>3</span>
+
+                <div class="scale-line">
+
+                    <div class="scale-progress"></div>
+
+                </div>
+
+                <span>8</span>
+
+            </div>
+
+
+            <div class="quality-message">
+
+                {% if prediction >= 7 %}
+
+                    <div class="quality-badge excellent">
+                        ★ Excellent Quality
+                    </div>
+
+                    <p>
+                        The model predicts that this wine has
+                        excellent quality characteristics.
+                    </p>
+
+                {% elif prediction >= 6 %}
+
+                    <div class="quality-badge good">
+                        ✓ Good Quality
+                    </div>
+
+                    <p>
+                        The model predicts that this wine has
+                        good overall quality characteristics.
+                    </p>
+
+                {% elif prediction >= 5 %}
+
+                    <div class="quality-badge average">
+                        ● Average Quality
+                    </div>
+
+                    <p>
+                        The model predicts moderate wine quality.
+                    </p>
+
+                {% else %}
+
+                    <div class="quality-badge low">
+                        Quality Needs Improvement
+                    </div>
+
+                    <p>
+                        The model predicts relatively lower
+                        wine quality characteristics.
+                    </p>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- Model Information -->
+
+            <div class="model-info">
+
+                <div class="info-item">
+
+                    <span class="info-icon">
+                        🤖
+                    </span>
+
+                    <div>
+                        <small>MODEL</small>
+                        <strong>Random Forest</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="info-item">
+
+                    <span class="info-icon">
+                        🧠
+                    </span>
+
+                    <div>
+                        <small>AI TYPE</small>
+                        <strong>Classification</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="info-item">
+
+                    <span class="info-icon">
+                        ⚡
+                    </span>
+
+                    <div>
+                        <small>RESULT</small>
+                        <strong>Predicted</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Action Buttons -->
+
+            <div class="result-actions">
+
+                <a href="/" class="secondary-button">
+                    ← Analyze Another Wine
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- Footer -->
+
+        <footer>
+
+            <span>Machine Learning</span>
+
+            <span>•</span>
+
+            <span>Random Forest</span>
+
+            <span>•</span>
+
+            <span>Flask</span>
+
+        </footer>
+
+    </main>
+
+
+    <!-- Small animation -->
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const number =
+                document.querySelector(".quality-number");
+
+            if (number) {
+
+                number.style.opacity = "0";
+
+                number.style.transform =
+                    "scale(0.5)";
+
+                setTimeout(() => {
+
+                    number.style.transition =
+                        "all 0.8s cubic-bezier(.17,.67,.35,1.4)";
+
+                    number.style.opacity = "1";
+
+                    number.style.transform =
+                        "scale(1)";
+
+                }, 150);
+
+            }
+
+        });
+
+    </script>
+
+</body>
+
+</html>
